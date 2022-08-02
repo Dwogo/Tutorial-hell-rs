@@ -1,11 +1,19 @@
 // A function to get a number e.g. age or adding numbers
 pub fn get_int() -> i64 {
     let mut line = String::new();
-    std::io::stdin()
-        .read_line(&mut line)
-        .expect("Failed to read line");
-    let line = line.trim().parse().unwrap();
-    line
+    loop {
+        std::io::stdin()
+            .read_line(&mut line)
+            .expect("Failed to read line");
+        let line: i64 = match line.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("That's not a number");
+                continue;
+            }
+        };
+        return line;
+    }
 }
 
 pub fn adding() {
